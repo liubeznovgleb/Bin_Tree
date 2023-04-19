@@ -50,8 +50,81 @@ void print_tree(ListNode *cur_el){
 // ПРОПИСЫВАЕМ ФУНКЦИИ ИЗ ЗАДАНИЯ
 
 // 1 - 3 вида обхода дерева (pre/in/post order) ( + печать)
+void inord(ListNode* root){
+    if (root == nullptr){
+        return;
+    }
+    preord(root->left);
+    cout << root->key;
+    preord(root->right);
+}
+
+void preord(ListNode* root){
+    if (root == nullptr){
+        return;
+    }
+    cout << root->key;
+    preord(root->left);
+    preord(root->right);
+}
+
+void postord(ListNode* root){
+    if (root == nullptr){
+        return;
+    }
+    cout << root->key;
+    preord(root->right);
+    preord(root->left);
+}
 // 2 - добавление элемента
+void add(ListNode* root, int key){
+    if (root == nullptr){
+        ListNode* add = new ListNode;
+        add->key = key;
+        return;
+    }
+    if (key < root->key){
+        add(root->left, key);
+    }
+    else{
+        add(root->right, key);
+    }
+}
 // 3 - удаление элемента (по значению/узлу)
+void delete_1(ListNode* del){       // удаление элемента по узлу
+    ListNode* x = del->left;
+    while (x->right != nullptr)
+    {
+        x = x->right;
+    }
+    if (del->key < del->p->key)
+    {
+        del->p->left = x;
+        x->left = del->left;
+        x->right = del->right;
+    }
+    else
+    {
+        del->p->right = x;
+        x->left = del->left;
+        x->right = del->right;
+    }
+}
+
+void delete_2(ListNode* root, int key){         // удаление элемента по ключу (просто функция поиска элемента по ключу + функция delete_1)
+    while (root->key != key)
+    {
+        if (key < root->key)
+        {
+            root = root->left;
+        }
+        else
+        {
+            root = root->right;
+        }
+    }
+    delete_1(root);
+}
 // 4 - вычисление высоты дерева
 // 5 - поиск элемента в дереве по значению 
 ListNode * search(ListNode *root, int key){
