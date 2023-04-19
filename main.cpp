@@ -81,6 +81,15 @@ void add(ListNode* root, int key){
     if (root == nullptr){
         ListNode* add = new ListNode;
         add->key = key;
+        add->p = root->p;
+        if (key < root->p->key)
+        {
+            root->p->left = add;
+        }
+        else
+        {
+            root->p->right = add;
+        }
         return;
     }
     if (key < root->key){
