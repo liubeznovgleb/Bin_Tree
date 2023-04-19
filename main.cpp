@@ -50,22 +50,21 @@ void print_tree(ListNode *cur_el){
 // ПРОПИСЫВАЕМ ФУНКЦИИ ИЗ ЗАДАНИЯ
 
 // 1 - 3 вида обхода дерева (pre/in/post order) ( + печать)
-void inord(ListNode* root){
-    if (root == nullptr){
-        return;
-    }
-    preord(root->left);
-    cout << root->key;
-    preord(root->right);
-}
-
-
 void preord(ListNode* root){
     if (root == nullptr){
         return;
     }
     cout << root->key;
     preord(root->left);
+    preord(root->right);
+}
+
+void inord(ListNode* root){
+    if (root == nullptr){
+        return;
+    }
+    preord(root->left);
+    cout << root->key;
     preord(root->right);
 }
 
