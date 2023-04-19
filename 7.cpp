@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+
 struct ListNode {
     int key; // key to access the data and compare nodes
     int data;
