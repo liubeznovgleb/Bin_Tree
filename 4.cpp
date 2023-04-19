@@ -10,7 +10,12 @@ struct ListNode {
     ListNode *p; // parent pointer
 };
 
-int hight(ListNode* root){
-    int h = 0;
-    
+int height(ListNode* root) {
+    if (root == NULL) {
+        return -1;
+    } else {
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        return 1 + max(leftHeight, rightHeight);
+    }
 }
