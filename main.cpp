@@ -126,6 +126,15 @@ void delete_2(ListNode* root, int key){         // удаление элемен
     delete_1(root);
 }
 // 4 - вычисление высоты дерева
+int height(ListNode* root) {
+    if (root == NULL) {
+        return -1;
+    } else {
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        return 1 + max(leftHeight, rightHeight);
+    }
+}
 // 5 - поиск элемента в дереве по значению 
 ListNode * search(ListNode *root, int key){
     if ((root == nullptr) || (key == root -> key)){
