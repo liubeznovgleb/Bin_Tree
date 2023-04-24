@@ -233,7 +233,7 @@ void delete_tree(ListNode* (&root_whole), ListNode* root){
     while (del!=root){
         del = Node_to_delete(tmp);
         tmp = del->p;
-        delete_list(del);
+        delete_1(del);
     }
     if (root == root_whole){
         root_whole = nullptr;
