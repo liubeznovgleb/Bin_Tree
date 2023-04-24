@@ -259,5 +259,6 @@ int main(){
     cout << 9 << endl;
     //delete_tree(root);
     print_tree(root); 
+    cout << height(root);
 
 }

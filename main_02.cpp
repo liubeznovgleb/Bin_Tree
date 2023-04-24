@@ -196,5 +196,12 @@ int main(){
     // 7 
     cout << 7 << endl;
     cout << find_maximum(root) -> key << " Search max el" << endl;
-
+    // 4
+    cout << 4 << endl;
+    cout << height(root) << " Search height" << endl;
+    // 1
+    cout << 1 << endl;
+    
+    // 2
+    // 3
 }
