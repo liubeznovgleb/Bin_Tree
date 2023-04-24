@@ -111,24 +111,32 @@ void add(ListNode* root, int key){
         }
     }
 }
+
 // 3 - удаление элемента (по значению/узлу)
-void delete_1(ListNode* del){
-    ListNode* x = del->left;
-    while (x->right != nullptr)
-    {
-        x = x->right;
+void delete_1(ListNode *node) {         // удаление элемента по узлу
+    if (node == nullptr) return;
+    if (node->left == nullptr && node->right == nullptr) {
+        if (node->p != nullptr) {
+            if (node->p->left == node) node->p->left = nullptr;
+            else node->p->right = nullptr;
+        }
+        delete node;
     }
-    if (del->key < del->p->key)
-    {
-        del->p->left = x;
-        x->left = del->left;
-        x->right = del->right;
+    else if (node->left == nullptr || node->right == nullptr) {
+        ListNode *child = (node->left != nullptr) ? node->left : node->right;
+        if (node->p != nullptr) {
+            if (node->p->left == node) node->p->left = child;
+            else node->p->right = child;
+        }
+        child->p = node->p;
+        delete node;
     }
-    else
-    {
-        del->p->right = x;
-        x->left = del->left;
-        x->right = del->right;
+    else {
+        ListNode *minNode = node->right;
+        while (minNode->left != nullptr) minNode = minNode->left;
+        node->key = minNode->key;
+        node->data = minNode->data;
+        delete_1(minNode);
     }
 }
 
@@ -293,10 +301,5 @@ int main(){
     cout << 9 << " delete tree" << endl;
     delete_tree(root,root);
     print_tree(root); 
-<<<<<<< HEAD
     cout << height(root);
-
 }
-=======
-}
->>>>>>> 5184b111c27b02a1ee7c264969ffa86c885759ab
